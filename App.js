@@ -19,6 +19,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import DeckDetail from "./components/DeckDetail";
+import Screen from "./components/Screen";
 import { white, blue } from "./utils/helpers";
 
 const FlashCardStatusBar = ({ backgroundColor, ...props }) => {
@@ -83,9 +84,14 @@ const Stack = createStackNavigator();
 const MainNav = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name="Home"
+      name="My Mobile Flashcards"
       component={HomeNav}
-      options={{ headerShown: false }}
+      options={{
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: blue,
+        },
+      }}
     />
     <Stack.Screen
       name="Deck Detail"
@@ -105,12 +111,12 @@ export default class App extends Component {
   render() {
     return (
       <PaperProvider>
-        <View style={styles.container}>
+        <Screen>
           <FlashCardStatusBar backgroundColor={blue} style="light" />
           <NavigationContainer>
             <MainNav />
           </NavigationContainer>
-        </View>
+        </Screen>
       </PaperProvider>
     );
   }
