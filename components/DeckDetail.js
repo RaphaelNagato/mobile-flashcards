@@ -12,11 +12,14 @@ class DeckDetail extends Component {
   }
 
   handleDeleteDeck = async () => {
-    console.log("Should Delete");
     const { remove, goBack, title } = this.props;
     remove();
     await deleteDeck(title);
     goBack();
+  };
+
+  handleAddCard = (id) => {
+    this.props.navigation.navigate("Add Card", { deckId: id });
   };
 
   render() {
@@ -33,7 +36,7 @@ class DeckDetail extends Component {
             dark={true}
             color={blue}
             style={styles.button}
-            onPress={() => console.log("Pressed Blue")}
+            onPress={() => this.handleAddCard(title)}
           >
             Add Card
           </Button>
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
   button2: { backgroundColor: white, marginTop: 15 },
 });
 
-function mapStateToProps({ decks }, { route }) {
+function mapStateToProps(decks, { route }) {
   const { deckId } = route.params;
 
   return {

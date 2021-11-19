@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK } from "../actions";
+import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from "../actions";
 
 function deckReducer(state = {}, action) {
   switch (action.type) {
@@ -10,15 +10,20 @@ function deckReducer(state = {}, action) {
         ...action.deck,
       };
     case REMOVE_DECK:
-      const { [action.deckId]: undefined, ...restOfState } = state.decks;
-      console.log(state);
-      console.log(action.deckId);
-      console.log(restOfState);
+      const { [action.deckId]: undefined, ...restOfState } = state;
 
       return {
-        decks: { ...restOfState },
+        ...restOfState,
       };
-
+    case ADD_CARD:
+      const { deckId, card } = action;
+      return {
+        ...state,
+        [deckId]: {
+          title: deckId,
+          questions: state[deckId].questions.concat(card),
+        },
+      };
     default:
       return state;
   }

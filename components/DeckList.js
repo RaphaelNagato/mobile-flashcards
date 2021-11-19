@@ -15,7 +15,7 @@ class DeckList extends Component {
     try {
       const { dispatch } = this.props;
       const decks = await getDecks();
-      dispatch(receiveDecks({ decks }));
+      dispatch(receiveDecks(decks));
       this.setState(() => ({
         ready: true,
       }));
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps({ decks }) {
+function mapStateToProps(decks) {
   return {
     decks,
   };
