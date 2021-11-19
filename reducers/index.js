@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK } from "../actions";
+import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK } from "../actions";
 
 function deckReducer(state = {}, action) {
   switch (action.type) {
@@ -8,6 +8,15 @@ function deckReducer(state = {}, action) {
       return {
         ...state,
         ...action.deck,
+      };
+    case REMOVE_DECK:
+      const { [action.deckId]: undefined, ...restOfState } = state.decks;
+      console.log(state);
+      console.log(action.deckId);
+      console.log(restOfState);
+
+      return {
+        decks: { ...restOfState },
       };
 
     default:

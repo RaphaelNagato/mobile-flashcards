@@ -5,14 +5,14 @@ import { white, gray } from "../utils/helpers";
 
 export default function Deck({ title, noOfCards, onPress }) {
   return (
-    <View style={styles.deckContainer}>
-      <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.deckContainer}>
         <View style={styles.textView}>
           <Text style={styles.deckTitle}>{title}</Text>
           <Text style={styles.cardText}>{noOfCards} cards</Text>
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 
