@@ -37,9 +37,7 @@ export function saveDeckTitle(title) {
 export async function getDeck(id) {
   try {
     const result = await AsyncStorage.getItem(MOBILE_FLASH_CARDS_STORAGE_KEY);
-    let data = JSON.parse(result);
-    let deck = data.find((x) => x.hasOwnProperty(id));
-
+    let deck = JSON.parse(result)[id];
     return deck;
   } catch (err) {
     console.error(err);
@@ -65,7 +63,7 @@ export async function deleteDeck(id) {
     let decks = JSON.parse(
       await AsyncStorage.getItem(MOBILE_FLASH_CARDS_STORAGE_KEY)
     );
-    decks = decks.filter((deck) => !deck.hasOwnProperty(id));
+    delete decks[id];
     await AsyncStorage.setItem(
       MOBILE_FLASH_CARDS_STORAGE_KEY,
       JSON.stringify(decks)

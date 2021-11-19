@@ -1,14 +1,14 @@
+import { CurrentRenderContext } from "@react-navigation/core";
 import React from "react";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
+import { white, gray } from "../utils/helpers";
 
 export default function Deck({ title, noOfCards, onPress }) {
   return (
     <View style={styles.deckContainer}>
       <TouchableOpacity onPress={onPress}>
-        <View>
+        <View style={styles.textView}>
           <Text style={styles.deckTitle}>{title}</Text>
-        </View>
-        <View>
           <Text style={styles.cardText}>{noOfCards} cards</Text>
         </View>
       </TouchableOpacity>
@@ -28,11 +28,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
   },
+  textView: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   deckTitle: {
     fontSize: 28,
   },
   cardText: {
     fontSize: 18,
-    color: textGray,
+    color: gray,
   },
 });

@@ -6,6 +6,11 @@ import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
+//Redux
+import { createStore } from "redux";
+import { Provider as StoreProvider } from "react-redux";
+import reducer from "./reducers";
+
 //Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -110,21 +115,16 @@ const MainNav = () => (
 export default class App extends Component {
   render() {
     return (
-      <PaperProvider>
-        <Screen>
-          <FlashCardStatusBar backgroundColor={blue} style="light" />
-          <NavigationContainer>
-            <MainNav />
-          </NavigationContainer>
-        </Screen>
-      </PaperProvider>
+      <StoreProvider store={createStore(reducer)}>
+        <PaperProvider>
+          <Screen>
+            <FlashCardStatusBar backgroundColor={blue} style="light" />
+            <NavigationContainer>
+              <MainNav />
+            </NavigationContainer>
+          </Screen>
+        </PaperProvider>
+      </StoreProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: white,
-  },
-});
