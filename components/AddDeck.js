@@ -30,7 +30,7 @@ class AddDeck extends Component {
         },
       })
     );
-    navigation.navigate("Decks");
+    navigation.navigate("Deck Detail", { deckId: title });
     saveDeckTitle(title);
   };
 
@@ -57,7 +57,7 @@ class AddDeck extends Component {
             disabled={title === ""}
             style={styles.button}
           >
-            Submit
+            Create Deck
           </Button>
         </View>
       </View>

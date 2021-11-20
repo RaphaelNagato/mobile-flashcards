@@ -44,7 +44,6 @@ export function setLocalNotification() {
       if (!data) {
         Notifications.requestPermissionsAsync()
           .then(({ status }) => {
-            console.log("Notification permissions status:", status);
             if (status === "granted") {
               Notifications.cancelAllScheduledNotificationsAsync().catch(
                 (err) => console.log(err)
