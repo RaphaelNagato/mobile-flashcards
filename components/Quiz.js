@@ -8,7 +8,15 @@ import {
   StyleSheet,
 } from "react-native";
 import { Card, Button, Paragraph } from "react-native-paper";
-import { blue, gray, green, red, white } from "../utils/helpers";
+import {
+  blue,
+  clearLocalNotification,
+  gray,
+  green,
+  red,
+  setLocalNotification,
+  white,
+} from "../utils/helpers";
 
 class Quiz extends Component {
   state = {
@@ -59,6 +67,7 @@ class Quiz extends Component {
       );
     }
     if (questionIndex === deck.questions.length) {
+      clearLocalNotification().then(setLocalNotification);
       return (
         <View style={styles.container}>
           <Text style={styles.count}>Quiz Completed</Text>

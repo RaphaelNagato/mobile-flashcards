@@ -25,7 +25,7 @@ import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import DeckDetail from "./components/DeckDetail";
 import Screen from "./components/Screen";
-import { white, blue } from "./utils/helpers";
+import { white, blue, setLocalNotification } from "./utils/helpers";
 import AddCard from "./components/AddCard";
 import Quiz from "./components/Quiz";
 
@@ -137,6 +137,10 @@ const MainNav = () => (
 );
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <StoreProvider store={createStore(reducer)}>
