@@ -22,6 +22,10 @@ class DeckDetail extends Component {
     this.props.navigation.navigate("Add Card", { deckId: id });
   };
 
+  showQuiz = (id) => {
+    this.props.navigation.navigate("Quiz", { deckId: id });
+  };
+
   render() {
     const { title, noOfCards } = this.props;
     return (
@@ -44,7 +48,7 @@ class DeckDetail extends Component {
             mode={"outlined"}
             color={blue}
             style={[styles.button, styles.button2]}
-            onPress={() => console.log("Pressed quiz")}
+            onPress={() => this.showQuiz(title)}
           >
             Start Quiz
           </Button>

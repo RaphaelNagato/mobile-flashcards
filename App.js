@@ -27,6 +27,7 @@ import DeckDetail from "./components/DeckDetail";
 import Screen from "./components/Screen";
 import { white, blue } from "./utils/helpers";
 import AddCard from "./components/AddCard";
+import Quiz from "./components/Quiz";
 
 const FlashCardStatusBar = ({ backgroundColor, ...props }) => {
   return (
@@ -120,6 +121,17 @@ const MainNav = () => (
         },
       }}
       title="Add Card"
+    />
+    <Stack.Screen
+      name="Quiz"
+      component={Quiz}
+      options={{
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: blue,
+        },
+      }}
+      title="Quiz"
     />
   </Stack.Navigator>
 );
