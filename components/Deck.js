@@ -1,4 +1,3 @@
-import { CurrentRenderContext } from "@react-navigation/core";
 import React from "react";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { white, gray } from "../utils/helpers";

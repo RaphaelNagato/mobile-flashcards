@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Animated } from "react-native";
 import { Button } from "react-native-paper";
 import { blue, gray, red, white } from "../utils/helpers";
 import { connect } from "react-redux";
@@ -7,6 +7,19 @@ import { removeDeck } from "../actions";
 import { deleteDeck } from "../utils/api";
 
 class DeckDetail extends Component {
+  state = {
+    bounceAnim: new Animated.Value(0),
+  };
+
+  componentDidMount() {
+    const { bounceAnim } = this.state;
+    Animated.spring(bounceAnim, {
+      toValue: 1,
+      friction: 6,
+      useNativeDriver: true,
+    }).start();
+  }
+
   shouldComponentUpdate(nextProps) {
     return nextProps.title !== undefined && nextProps.noOfCards !== undefined;
   }
@@ -28,8 +41,11 @@ class DeckDetail extends Component {
 
   render() {
     const { title, noOfCards } = this.props;
+    const { bounceAnim } = this.state;
     return (
-      <View style={styles.container}>
+      <Animated.View
+        style={[styles.container, { transform: [{ scale: bounceAnim }] }]}
+      >
         <View style={styles.textView}>
           <Text style={styles.deckTitle}>{title}</Text>
           <Text style={styles.cardText}>{noOfCards} cards</Text>
@@ -62,7 +78,7 @@ class DeckDetail extends Component {
         >
           Delete Deck
         </Button>
-      </View>
+      </Animated.View>
     );
   }
 }

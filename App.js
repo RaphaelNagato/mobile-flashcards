@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Platform } from "react-native";
+import { View, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
